@@ -1,10 +1,10 @@
 === Atom Payment for WooCommerce ===
 Contributors: vikaskapadiya
-Tags: woocomerce, atom , payments, Paynetz, India
+Tags: WooCommerce, Payment Gateway, Atom, atom payment gateway, gateway for woocommerce, the woocommerce plugin woocommerce allows use atom payment, payment gateway with secure online payment gateway, Indian payment gateway, Card payment woocommerce, pay with Credit Card / Debit Card / Internet Banking
 Donate link: https://www.payumoney.com/paybypayumoney/#/69775
 Requires at least: 4.0
-Tested up to: 4.5.3
-Stable tag: 2.0.0
+Tested up to: 4.6
+Stable tag: 2.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -12,6 +12,7 @@ Atom Paynetz Gateway for WooCommerce. Atom Paynetz allows a merchant to accept p
 
 == Description ==
 This is the Atom payment gateway for WooCommerce. Allows you to use Atom payment gateway with the WooCommerce plugin. It uses the redirect method, the user is redirected to Atom website .
+
 
 == Installation ==
 1. Ensure you have latest version of WooCommerce plugin installed (WooCommerce 2.1+)
