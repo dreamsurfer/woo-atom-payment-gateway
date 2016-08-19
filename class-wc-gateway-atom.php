@@ -16,7 +16,6 @@ if (!defined('ABSPATH')) {
 }
 
 add_action('plugins_loaded', 'woocommerce_atom_init', 0);
-define('IMGDIR', WP_PLUGIN_URL . "/" . plugin_basename(dirname(__FILE__)) . '/assets/img/');
 
 function woocommerce_atom_init() {
 	// If the parent WC_Payment_Gateway class doesn't exist
@@ -32,7 +31,7 @@ function woocommerce_atom_init() {
 		// Setup our Gateway's id, description and other values
 		function __construct() {
 			$this->id = "atom";
-			$this->icon = IMGDIR . 'logo.png';
+			$this->icon = plugins_url('assets/img/logo.png', __FILE__);
 			$this->method_title = __("Atom Payment Gateway", 'wc_gateway_atom');
 			$this->method_description = "Atom Gateway setting page.";
 			$this->has_fields = false;
@@ -162,10 +161,6 @@ function woocommerce_atom_init() {
 
 				exit;
 			}
-		}
-
-		function showMessage($content) {
-			return '<div class="box ' . $this->msg['class'] . '">' . $this->msg['message'] . '</div>' . $content;
 		}
 
 		// Submit payment and handle response
