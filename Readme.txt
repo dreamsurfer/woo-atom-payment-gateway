@@ -4,7 +4,7 @@ Tags: WooCommerce, Payment Gateway, Atom, atom payment gateway, gateway for wooc
 Donate link: https://www.payumoney.com/paybypayumoney/#/69775
 Requires at least: 4.0
 Tested up to: 4.6
-Stable tag: 2.1
+Stable tag: 2.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -28,6 +28,9 @@ This is the Atom payment gateway for WooCommerce. Allows you to use Atom payment
 == Changelog ==
 
 = 2.0.1 =
+*Release Date - 7 September 2016*
+
+
 * Fixed: undefined variable error
 * Fixed: Successful/failed error message
 
