@@ -117,7 +117,9 @@ function woocommerce_atom_init() {
 		}
 		function check_atom_response() {
 			global $woocommerce;
-			global $wpdb, $woocommerce;
+			$msg['class'] = 'error';
+			$msg['message'] = "Thank you for shopping with us. However, the transaction has been declined.";
+
 			if (isset($_REQUEST['f_code'])) {
 				$order = new WC_Order($_REQUEST['mer_txn']);
 
@@ -133,15 +135,15 @@ function woocommerce_atom_init() {
 				$discriminator = wc_clean($_REQUEST['discriminator']);
 
 				if (wc_clean($_REQUEST['f_code']) == 'Ok') {
-					$this->msg['message'] = "Thank you for shopping with us. Your account has been charged <b>Rs" . wc_clean($_REQUEST['amt']) . "</b> and your transaction is successful. Bank Transaction ID is  : <b>" . wc_clean($_REQUEST['bank_txn']) . "</b>.";
-					$this->msg['class'] = 'woocommerce-message';
+					$msg['message'] = "Thank you for shopping with us. Your account has been charged <b>Rs " . wc_clean($_REQUEST['amt']) . "</b> and your transaction is successful. Bank Transaction ID is  : <b>" . wc_clean($_REQUEST['bank_txn']) . "</b>.";
+					$msg['class'] = 'success';
 					$order->payment_complete();
 					$order->add_order_note('Atom payment successful<br/>Transaction ID: ' . wc_clean($_REQUEST['bank_txn']));
 					$woocommerce->cart->empty_cart();
 				} else {
 					$order->update_status('failed');
-					$this->msg['class'] = 'woocommerce-error';
-					$this->msg['message'] = "Thank you for shopping with us. However, the transaction has been declined.";
+					$msg['class'] = 'success';
+					$msg['message'] = "Thank you for shopping with us. However, the transaction has been declined.";
 				}
 				if (function_exists('wc_add_notice')) {
 					wc_add_notice($msg['message'], $msg['class']);
@@ -184,7 +186,7 @@ function woocommerce_atom_init() {
 			$udf1 = $first_name . " " . $last_name;
 			$udf2 = $user_email;
 			$udf3 = $phone_number;
-			$udf4 = $country . " " . $state . " " . shipping_city . " " . $address_1 . " " . $address_2 . " " . $postcode;
+			$udf4 = $country . " " . $state . " " . $city . " " . $address_1 . " " . $address_2 . " " . $postcode;
 
 			if ($user_email == '') {
 				$user_email = $_POST['billing_email'];
@@ -200,7 +202,7 @@ function woocommerce_atom_init() {
 				$udf1 = $first_name . " " . $last_name;
 				$udf2 = $user_email;
 				$udf3 = $phone_number;
-				$udf4 = $country . " " . $state . " " . shipping_city . " " . $address_1 . " " . $address_2 . " " . $postcode;
+				$udf4 = $country . " " . $state . " " . $city . " " . $address_1 . " " . $address_2 . " " . $postcode;
 			}
 
 			$order = new WC_Order($order_id);
@@ -239,7 +241,7 @@ function woocommerce_atom_init() {
 				$response = curl_exec($ch);
 				$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-				if ($result === false) {
+				if ($response === false) {
 					$success = false;
 					$error = 'Curl error: ' . curl_error($ch);
 				} else {
